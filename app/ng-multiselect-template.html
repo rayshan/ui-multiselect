@@ -1,0 +1,59 @@
+<div ng-show="showDebug" class="debug">
+<pre>
+output =  {{output}}
+inputPosition = {{inputPosition}}
+query = {{query}}
+filteredData.length = {{filteredData.length}} {{filteredData}}
+focusInput / focusChoice = {{focusInput}} / {{focusChoice}}
+hoverSelector / showSelector = {{hoverSelector}} / {{showSelector}}
+selectorPosition = {{selectorPosition}}
+caretPosition = {{caretPosition}}</pre>
+</div>
+
+<div ng-style="{'width': width + 'px'}"
+     class="ng-ms"
+     ng-class="{'ng-ms-hover': hoverInput, 'ng-ms-focus': focusInput}"
+     ng-mouseover="hoverInput = true"
+     ng-mouseleave="hoverInput = false">
+	<ul class="inline">
+		<li ng-repeat="item in output track by $index">
+			<span class="chosen"
+			      ng-class="focusChoice[$index] === true ? 'chosen-focused' : ''"
+				    ng-mouseover="focusChoice[$index] = true"
+				    ng-mouseleave="focusChoice[$index] = false"
+				    ng-click="removeItem($index)">
+				{{item}} <span class="remove">X</span>
+			</span>
+		</li>
+
+		<li>
+			<input ng-model="query"
+			       placeholder="{{placeholder}}"
+			       ng-style="{'width': inputWidth + 'px'}"
+			       ui-event="{focus: 'focus()', blur: 'blur()'}"
+			       ng-keydown="keyParser($event)"/>
+		</li>
+	</ul>
+
+</div> <!--input-->
+
+<div class="ng-ms-selector" ng-style="{'width': width + 'px'}"
+     ng-show="showSelector"
+     ng-mouseenter="hoverSelector = true" ng-mouseleave="hoverSelector = false">
+
+	<ul>
+		<li ng-repeat="item in (filteredData = (data | filter: query | limitTo: limitFilter))"
+		    ng-class="$parent.selectorPosition === $index ? 'choice-selected' : ''"
+				ng-animate="'selector'">
+			<div class="choice"
+			     ng-click="addItem(item, output.length, $event)"
+			     ng-mouseenter="$parent.selectorPosition = $index">
+				<span ng-bind-html-unsafe="'{{item}}' | underline: query"></span>
+			</div>
+		</li>
+	</ul> <!--data-->
+
+	<div class="selector-more" ng-show="filteredData.length >= limitFilter">
+		•••</div>
+
+</div> <!--selector-->

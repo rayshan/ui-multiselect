@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<title>Formula Input Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--w/ responsive, w/o icons-->
+	<link rel="stylesheet"
+	      href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css">
+	<!--Font Awesome w/o IE7 support-->
+	<link rel="stylesheet"
+	      href="https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css">
+
+	<link rel="stylesheet" href="app.css">
+</head>
+
+<body ng-controller="MainCtrl">
+
+<div class="container-fluid">
+	<div class="centerd">
+		<div ui-multiselect
+		     data='data'
+		     output='output'
+		     width=400
+		     placeholder='Multi-select countries...'
+		     limit-filter=10></div>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="ui-event.js"></script>
+</body>
+</html>

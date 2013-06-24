@@ -1,0 +1,142 @@
+/* ==================================================
+	Page
+================================================== */
+
+.container-fluid {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 980px;
+}
+
+div.centerd {
+	width: 400px;
+	margin: 0 auto;
+	padding-top: 25px;
+}
+
+/* ============================== */
+
+pre {
+	padding: 5px;
+	text-align: left;
+	font-size: 0.6em;
+	line-height: 1.4em;
+}
+
+/* ==================================================
+	Input
+================================================== */
+
+div.ng-ms {
+	border: 1px solid #d9d9d9;
+	border-top: 1px solid #c0c0c0;
+	padding: 1px 0 1px 0;
+}
+
+div.ng-ms-hover {
+	border: 1px solid #b9b9b9;
+	border-top: 1px solid #a0a0a0;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+}
+
+div.ng-ms-focus {
+	border: 1px solid #4d90fe;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+}
+
+div.ng-ms>ul {
+	margin: 0;
+	padding: 0;
+}
+
+div.ng-ms>ul>li {
+	margin-left: 3px;
+	padding: 0;
+}
+
+span.chosen {
+	padding: 2px 0 2px 4px;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #3a87ad;
+	color: white;
+}
+span.chosen-focused {
+	background-color: #295F7A;
+}
+span.remove {
+	padding: 0 4px 0 0;
+	color: orange;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+div.ng-ms input {
+	margin-left: 5px;
+	border: 0;
+	outline: 0;
+}
+
+/* ==================================================
+	Selector
+================================================== */
+
+div.ng-ms-selector {
+	border: 1px solid lightgray;
+	border-top: 0;
+	position: absolute;
+	box-shadow: 0 3px 5px rgba(0,0,0,.20);
+}
+
+div.ng-ms-selector>ul {
+	margin: 0;
+	list-style-type: none;
+}
+
+div.ng-ms-selector>ul>li {
+	padding-left: 10px;
+}
+
+.selector-more {
+	position: absolute;
+	bottom: 0;
+	right: 5px;
+	text-align: center;
+	border-radius: 5px;
+	color: lightgray;
+	cursor: pointer;
+}
+
+li.choice-selected {
+	background-color: lightgray;
+	cursor: pointer;
+	padding-left: 15px !important;
+}
+
+.underline {
+	border-bottom: 1px solid orangered;
+}
+
+/* ==================================================
+	Animation
+================================================== */
+
+.selector-enter, .selector-leave {
+	-webkit-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	position: relative;
+	display: block;
+}
+.selector-enter.selector-enter-active, .selector-leave {
+	opacity: 1;
+	right: 0;
+	height: 30px;
+}
+.selector-leave.selector-leave-active, .selector-enter {
+	opacity: 0;
+	right: -50px;
+	height: 0px;
+}
