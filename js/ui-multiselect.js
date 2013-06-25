@@ -1,13 +1,13 @@
-app.filter('underline', function () {
+angular.module('underline', []).filter('underline', [function () {
 	return function (text, query) {
 		if (query.length > 0 || angular.isNumber(query)) {
 			text = text.toString(); query = query.toString();
 			return text.replace(new RegExp(query, 'gi'), '<span class="underline">$&</span>');
 		} else return text;
 	};
-});
+}]);
 
-app.directive('uiMultiselect', function () {
+angular.module('ui.multiselect', []).directive('uiMultiselect', [function () {
 	return {
 		templateUrl: 'ui-multiselect.html',
 		scope: {
@@ -109,4 +109,4 @@ app.directive('uiMultiselect', function () {
 
 		}
 	}
-});
+}]);
