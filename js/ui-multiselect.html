@@ -19,8 +19,6 @@ caretPosition = {{caretPosition}}</pre>
 		<li ng-repeat="item in output track by $index">
 			<span class="chosen"
 			      ng-class="focusChoice[$index] === true ? 'chosen-focused' : ''"
-				    ng-mouseover="focusChoice[$index] = true"
-				    ng-mouseleave="focusChoice[$index] = false"
 				    ng-click="removeItem($index)">
 				{{item}} <span class="remove">X</span>
 			</span>
