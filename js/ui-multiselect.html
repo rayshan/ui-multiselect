@@ -13,8 +13,7 @@ caretPosition = {{caretPosition}}</pre>
 <div ng-style="{'width': width + 'px'}"
      class="ng-ms"
      ng-class="{'ng-ms-hover': hoverInput, 'ng-ms-focus': focusInput}"
-     ng-mouseover="hoverInput = true"
-     ng-mouseleave="hoverInput = false">
+     ng-mouseover="hoverInput = true" ng-mouseleave="hoverInput = false">
 	<ul class="inline">
 		<li ng-repeat="item in output track by $index">
 			<span class="chosen"
@@ -35,7 +34,8 @@ caretPosition = {{caretPosition}}</pre>
 
 </div> <!--input-->
 
-<div class="ng-ms-selector" ng-style="{'width': width + 'px'}"
+<div class="ng-ms-selector"
+     ng-style="{'width': width + 'px'}"
      ng-show="showSelector"
      ng-mouseenter="hoverSelector = true" ng-mouseleave="hoverSelector = false">
 

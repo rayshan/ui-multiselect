@@ -47,7 +47,7 @@ span.remove {
 }
 
 div.ng-ms input {
-	margin-left: 5px;
+	margin-left: 2px;
 	outline: 0;
 	border: 0;
 }
@@ -86,6 +86,8 @@ li.choice-selected {
 	padding-left: 15px !important;
 	background-color: lightgray;
 	cursor: pointer;
+	transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	font-weight: bold;
 }
 
 .underline {
