@@ -16,17 +16,23 @@ angular.module('ui.multiselect', []).directive('uiMultiselect', [function () {
 		},
 		link: function (scope, element, attrs) {
 			scope.query = "";
-			scope.limitFilter = attrs.limitFilter;
+			scope.limitFilter = attrs.limitFilter; // limits # of items shown in selector
 			scope.width = attrs.width;
-			scope.placeholder = attrs.placeholder ? attrs.placeholder : '';
+
+			scope.$watch('output', function (newValue) {
+				if (newValue.length === 0) {
+					scope.placeholder = attrs.placeholder ? attrs.placeholder : ''
+				} else scope.placeholder = '';
+			}, true); // set placeholder & remove when there's output to save space
 
 			scope.$watch('query', function (newValue) {
-				var length = newValue.length > 0 ? newValue.length : scope.placeholder.length;
-				scope.inputWidth = scope.placeholder.length > 0 ? 10 + length * 6 : 100;
+				var length = scope.placeholder.length;
+				if (newValue.length > 0) length = newValue.length;
+				scope.inputWidth = 10 + length * 6;
 			}); // expand input box width based on content
 
-			scope.addItem = function (item, position) {
-				scope.output.splice(position, 0, item); // adds before position
+			scope.addItem = function (item) {
+				scope.output.push(item);
 				scope.query = [];
 			};
 			scope.removeItem = function (position) {
