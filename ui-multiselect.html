@@ -2,7 +2,7 @@
      class="ng-ms"
      ng-class="{'ng-ms-hover': hoverInput, 'ng-ms-focus': focusInput}"
      ng-mouseover="hoverInput = true" ng-mouseleave="hoverInput = false">
-	<ul class="inline">
+	<ul>
 		<li ng-repeat="item in output track by $index">
 			<span class="chosen"
 			      ng-class="focusChoice[$index] ? 'chosen-focused' : ''"
