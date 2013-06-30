@@ -38,11 +38,11 @@ span.chosen {
 }
 span.chosen:hover, span.chosen-focused {
 	background-color: #295F7A;
+	font-weight: bold;
 }
 span.remove {
 	padding: 0 4px 0 0;
 	color: orange;
-	font-weight: bold;
 	font-size: 0.8em;
 }
 
