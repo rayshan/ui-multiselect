@@ -38,12 +38,12 @@ span.chosen {
 }
 span.chosen:hover, span.chosen-focused {
 	background-color: #295F7A;
-	font-weight: bold;
 }
 span.remove {
 	padding: 0 4px 0 0;
 	color: orange;
 	font-size: 0.8em;
+	font-weight: bold;
 }
 
 div.ng-ms input {
@@ -84,10 +84,10 @@ div.ng-ms-selector>ul>li {
 
 li.choice-selected {
 	padding-left: 15px !important;
-	background-color: lightgray;
+	background-color: #3a87ad;
+	color: white;
 	cursor: pointer;
 	transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	font-weight: bold;
 }
 
 .underline {

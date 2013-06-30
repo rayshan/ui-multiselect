@@ -1,15 +1,3 @@
-<div ng-show="showDebug" class="debug">
-<pre>
-output =  {{output}}
-inputPosition = {{inputPosition}}
-query = {{query}}
-filteredData.length = {{filteredData.length}} {{filteredData}}
-focusInput / focusChoice = {{focusInput}} / {{focusChoice}}
-hoverSelector / showSelector = {{hoverSelector}} / {{showSelector}}
-selectorPosition = {{selectorPosition}}
-caretPosition = {{caretPosition}}</pre>
-</div>
-
 <div ng-style="{'width': width + 'px'}"
      class="ng-ms"
      ng-class="{'ng-ms-hover': hoverInput, 'ng-ms-focus': focusInput}"
@@ -17,7 +5,7 @@ caretPosition = {{caretPosition}}</pre>
 	<ul class="inline">
 		<li ng-repeat="item in output track by $index">
 			<span class="chosen"
-			      ng-class="focusChoice[$index] === true ? 'chosen-focused' : ''"
+			      ng-class="focusChoice[$index] ? 'chosen-focused' : ''"
 				    ng-click="removeItem($index)">
 				{{item}} <span class="remove">X</span>
 			</span>

@@ -5,7 +5,7 @@ angular.module('underline', []).filter('underline', [function () {
 			return text.replace(new RegExp(query, 'gi'), '<span class="underline">$&</span>');
 		} else return text;
 	};
-}]);
+}]); // filter for underlining searched letters
 
 angular.module('ui.multiselect', []).directive('uiMultiselect', [function () {
 	return {
@@ -15,9 +15,6 @@ angular.module('ui.multiselect', []).directive('uiMultiselect', [function () {
 			output: '=output'
 		},
 		link: function (scope, element, attrs) {
-			scope.showDebug = true;
-			scope.showSelectorDebug = true;
-
 			scope.query = "";
 			scope.limitFilter = attrs.limitFilter;
 			scope.width = attrs.width;
@@ -92,7 +89,7 @@ angular.module('ui.multiselect', []).directive('uiMultiselect', [function () {
 
 					$event.preventDefault();
 				}
-			};
+			}; // keyboard shortcuts
 
 		}
 	}
