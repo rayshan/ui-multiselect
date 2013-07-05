@@ -9,6 +9,7 @@
 	<link rel="stylesheet"
 	      href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css">
 
+	<!--<link rel="stylesheet" href="components/normalize-css/normalize.css">-->
 	<link rel="stylesheet" href="demo.css">
 	<link rel="stylesheet" href="ui-multiselect.css">
 </head>
@@ -27,8 +28,11 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+<!--not using bower due to problems with managing unstable releases-->
+<!--https://github.com/angular/bower-angular/issues/9-->
+
+<script src="components/angular-ui-utils/modules/event/event.js"></script>
 <script src="demo.js"></script>
 <script src="ui-multiselect.js"></script>
-<script src="ui-event.js"></script>
 </body>
 </html>
