@@ -3,7 +3,7 @@ ui-multiselect
 
 An inline multiselect with typeahead built as an AngularJS directive.
 
-[Demo](shan.io/ui-multiselect/demo.html)
+[Demo](http://shan.io/ui-multiselect/demo.html)
 
 <!-- [Why and how this was built](medium.com). -->
 
