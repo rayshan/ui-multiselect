@@ -25,4 +25,5 @@ Unfortunately angular-ui's ui-utils is needed, specifically ui-event, to bind fo
 
 ---
 
-By [Ray Shan](shan.io) with love & care.
+By [Ray Shan](http://www.rayshan.com) with love & care.
+<!-- By [Ray Shan](shan.io) with love & care. -->
