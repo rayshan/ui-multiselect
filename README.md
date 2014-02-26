@@ -30,5 +30,4 @@ MIT
 
 ---
 
-By [Ray Shan](http://www.rayshan.com) with care.
-<!-- By [Ray Shan](shan.io) with love & care. -->
+`< >` with ❤ by [Ray Shan](http://shan.io)
