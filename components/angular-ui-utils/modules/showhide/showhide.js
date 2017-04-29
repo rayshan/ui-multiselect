@@ -7,16 +7,14 @@
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
 angular.module('ui.showhide',[])
-.directive('uiShow', [function () {
-  return function (scope, elm, attrs) {
-    scope.$watch(attrs.uiShow, function (newVal, oldVal) {
-      if (newVal) {
-        elm.addClass('ui-show');
-      } else {
-        elm.removeClass('ui-show');
-      }
-    });
-  };
+.directive('uiShow', [() => (scope, elm, attrs) => {
+  scope.$watch(attrs.uiShow, (newVal, oldVal) => {
+    if (newVal) {
+      elm.addClass('ui-show');
+    } else {
+      elm.removeClass('ui-show');
+    }
+  });
 }])
 
 /**
@@ -27,16 +25,14 @@ angular.module('ui.showhide',[])
  *
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
-.directive('uiHide', [function () {
-  return function (scope, elm, attrs) {
-    scope.$watch(attrs.uiHide, function (newVal, oldVal) {
-      if (newVal) {
-        elm.addClass('ui-hide');
-      } else {
-        elm.removeClass('ui-hide');
-      }
-    });
-  };
+.directive('uiHide', [() => (scope, elm, attrs) => {
+  scope.$watch(attrs.uiHide, (newVal, oldVal) => {
+    if (newVal) {
+      elm.addClass('ui-hide');
+    } else {
+      elm.removeClass('ui-hide');
+    }
+  });
 }])
 
 /**
@@ -48,14 +44,12 @@ angular.module('ui.showhide',[])
  *
  * @param expression {boolean} evaluated expression to determine if the class should be added
  */
-.directive('uiToggle', [function () {
-  return function (scope, elm, attrs) {
-    scope.$watch(attrs.uiToggle, function (newVal, oldVal) {
-      if (newVal) {
-        elm.removeClass('ui-hide').addClass('ui-show');
-      } else {
-        elm.removeClass('ui-show').addClass('ui-hide');
-      }
-    });
-  };
+.directive('uiToggle', [() => (scope, elm, attrs) => {
+  scope.$watch(attrs.uiToggle, (newVal, oldVal) => {
+    if (newVal) {
+      elm.removeClass('ui-hide').addClass('ui-show');
+    } else {
+      elm.removeClass('ui-show').addClass('ui-hide');
+    }
+  });
 }]);

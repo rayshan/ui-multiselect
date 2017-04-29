@@ -41,21 +41,21 @@ angular.module('ui.jq',[]).
         }
         // If change compatibility is enabled, the form input's "change" event will trigger an "input" event
         if (attrs.ngModel && elm.is('select,input,textarea')) {
-          elm.bind('change', function() {
+          elm.bind('change', () => {
             elm.trigger('input');
           });
         }
 
         // Call jQuery method and pass relevant options
         function callPlugin() {
-          $timeout(function() {
-            elm[attrs.uiJq].apply(elm, linkOptions);
+          $timeout(() => {
+            elm[attrs.uiJq](...linkOptions);
           }, 0, false);
         }
 
         // If ui-refresh is used, re-fire the the method upon every change
         if (attrs.uiRefresh) {
-          scope.$watch(attrs.uiRefresh, function(newVal) {
+          scope.$watch(attrs.uiRefresh, newVal => {
             callPlugin();
           });
         }

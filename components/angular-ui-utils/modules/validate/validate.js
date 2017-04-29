@@ -14,64 +14,64 @@
  * If an object literal is passed a key denotes a validation error key while a value should be a validator function.
  * In both cases validator function should take a value to validate as its argument and should return true/false indicating a validation result.
  */
-angular.module('ui.validate',[]).directive('uiValidate', function () {
+angular.module('ui.validate',[]).directive('uiValidate', () => ({
+  restrict: 'A',
+  require: 'ngModel',
 
-  return {
-    restrict: 'A',
-    require: 'ngModel',
-    link: function (scope, elm, attrs, ctrl) {
-      var validateFn, watch, validators = {},
-        validateExpr = scope.$eval(attrs.uiValidate);
+  link(scope, elm, attrs, ctrl) {
+    var validateFn;
+    var watch;
+    var validators = {};
+    var validateExpr = scope.$eval(attrs.uiValidate);
 
-      if (!validateExpr){ return;}
+    if (!validateExpr){ return;}
 
-      if (angular.isString(validateExpr)) {
-        validateExpr = { validator: validateExpr };
-      }
+    if (angular.isString(validateExpr)) {
+      validateExpr = { validator: validateExpr };
+    }
 
-      angular.forEach(validateExpr, function (exprssn, key) {
-        validateFn = function (valueToValidate) {
-          var expression = scope.$eval(exprssn, { '$value' : valueToValidate });
-          if (angular.isObject(expression) && angular.isFunction(expression.then)) {
-            // expression is a promise
-            expression.then(function(){
-              ctrl.$setValidity(key, true);
-            }, function(){
-              ctrl.$setValidity(key, false);
-            });
-            return valueToValidate;
-          } else if (expression) {
-            // expression is true
+    angular.forEach(validateExpr, (exprssn, key) => {
+      validateFn = valueToValidate => {
+        var expression = scope.$eval(exprssn, { '$value' : valueToValidate });
+        if (angular.isObject(expression) && angular.isFunction(expression.then)) {
+          // expression is a promise
+          expression.then(() => {
             ctrl.$setValidity(key, true);
-            return valueToValidate;
-          } else {
-            // expression is false
+          }, () => {
             ctrl.$setValidity(key, false);
-            return undefined;
-          }
-        };
-        validators[key] = validateFn;
-        ctrl.$formatters.push(validateFn);
-        ctrl.$parsers.push(validateFn);
-      });
-
-      // Support for ui-validate-watch
-      if (attrs.uiValidateWatch) {
-        watch = scope.$eval(attrs.uiValidateWatch);
-        if (angular.isString(watch)) {
-          scope.$watch(watch, function(){
-            angular.forEach(validators, function(validatorFn, key){
-              validatorFn(ctrl.$modelValue);
-            });
           });
+          return valueToValidate;
+        } else if (expression) {
+          // expression is true
+          ctrl.$setValidity(key, true);
+          return valueToValidate;
         } else {
-          angular.forEach(watch, function(expression, key){
-            scope.$watch(expression, function(){
-              validators[key](ctrl.$modelValue);
-            });
-          });
+          // expression is false
+          ctrl.$setValidity(key, false);
+          return undefined;
         }
+      };
+      validators[key] = validateFn;
+      ctrl.$formatters.push(validateFn);
+      ctrl.$parsers.push(validateFn);
+    });
+
+    // Support for ui-validate-watch
+    if (attrs.uiValidateWatch) {
+      watch = scope.$eval(attrs.uiValidateWatch);
+      if (angular.isString(watch)) {
+        scope.$watch(watch, () => {
+          angular.forEach(validators, (validatorFn, key) => {
+            validatorFn(ctrl.$modelValue);
+          });
+        });
+      } else {
+        angular.forEach(watch, (expression, key) => {
+          scope.$watch(expression, () => {
+            validators[key](ctrl.$modelValue);
+          });
+        });
       }
     }
-  };
-});
+  }
+}));

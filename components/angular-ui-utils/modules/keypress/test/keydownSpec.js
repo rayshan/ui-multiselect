@@ -1,8 +1,8 @@
-describe('uiKeydown', function () {
+describe('uiKeydown', () => {
+  var $scope;
+  var $compile;
 
-  var $scope, $compile;
-
-  var createKeyEvent = function (mainKey, alt, ctrl, shift, meta) {
+  var createKeyEvent = (mainKey, alt, ctrl, shift, meta) => {
     var keyEvent = jQuery.Event("keydown");
 
     keyEvent.keyCode = mainKey;
@@ -14,13 +14,13 @@ describe('uiKeydown', function () {
     return keyEvent;
   };
 
-  var createElement = function (elementDef) {
+  var createElement = elementDef => {
     var elementStr = angular.isString(elementDef) ? elementDef : angular.toJson(elementDef);
     return $compile("<span ui-keydown='" + elementStr + "'></span>")($scope);
   };
 
   beforeEach(module('ui.keypress'));
-  beforeEach(inject(function (_$rootScope_, _$compile_) {
+  beforeEach(inject((_$rootScope_, _$compile_) => {
     $compile = _$compile_;
     $scope = _$rootScope_.$new();
 
@@ -29,23 +29,23 @@ describe('uiKeydown', function () {
     };
   }));
 
-  it('should support single key press', function () {
+  it('should support single key press', () => {
     createElement({'13': 'event=true'}).trigger(createKeyEvent(13));
     expect($scope.event).toBe(true);
   });
 
-  it('should support combined key press', function () {
+  it('should support combined key press', () => {
     createElement({'ctrl-shift-13': 'event=true'}).trigger(createKeyEvent(13, false, true, true, false));
     expect($scope.event).toBe(true);
   });
-  
-  it('should support alternative combinations', function () {
+
+  it('should support alternative combinations', () => {
     $scope.event = 0;
     createElement({'ctrl-shift-14 ctrl-shift-13': 'event=event+1'}).trigger(createKeyEvent(13, false, true, true, false)).trigger(createKeyEvent(14, false, true, true, false));
     expect($scope.event).toBe(2);
   });
 
-  it('should support multiple key press definitions', function () {
+  it('should support multiple key press definitions', () => {
     var elm = createElement({'13': 'event1=true', 'ctrl-shift-13': 'event2=true'});
 
     elm.trigger(createKeyEvent(13));
@@ -55,14 +55,14 @@ describe('uiKeydown', function () {
     expect($scope.event2).toBe(true);
   });
 
-  it('should handle meta key ("⌘" on OS X)', function () {
+  it('should handle meta key ("⌘" on OS X)', () => {
     var elm = createElement({'meta-83': 'event1=true'});
 
     elm.trigger(createKeyEvent(83, false, false, false, true));
     expect($scope.event1).toBe(true);
   });
 
-  it('should support $event in expressions', function () {
+  it('should support $event in expressions', () => {
 
     var element = createElement({'esc': 'cb($event)', '13': 'event2=$event'});
 
