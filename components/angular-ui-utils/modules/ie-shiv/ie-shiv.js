@@ -12,23 +12,21 @@
 //    <script src="build/angular-ui-ieshiv.js"></script>
 // <![endif]-->
 
-(function (exports) {
+((exports => {
+  var debug = window.ieShivDebug || false;
 
-  var debug = window.ieShivDebug || false,
-      tags = [ "ngInclude", "ngPluralize", "ngView", "ngSwitch", "uiCurrency", "uiCodemirror", "uiDate", "uiEvent",
-                "uiKeypress", "uiKeyup", "uiKeydown", "uiMask", "uiMapInfoWindow", "uiMapMarker", "uiMapPolyline",
-                "uiMapPolygon", "uiMapRectangle", "uiMapCircle", "uiMapGroundOverlay", "uiModal", "uiReset",
-                "uiScrollfix", "uiSelect2", "uiShow", "uiHide", "uiToggle", "uiSortable", "uiTinymce"
-                ];
+  var tags = [ "ngInclude", "ngPluralize", "ngView", "ngSwitch", "uiCurrency", "uiCodemirror", "uiDate", "uiEvent",
+            "uiKeypress", "uiKeyup", "uiKeydown", "uiMask", "uiMapInfoWindow", "uiMapMarker", "uiMapPolyline",
+            "uiMapPolygon", "uiMapRectangle", "uiMapCircle", "uiMapGroundOverlay", "uiModal", "uiReset",
+            "uiScrollfix", "uiSelect2", "uiShow", "uiHide", "uiToggle", "uiSortable", "uiTinymce"
+            ];
 
   window.myCustomTags =  window.myCustomTags || []; // externally defined by developer using angular-ui directives
-  tags.push.apply(tags, window.myCustomTags);
+  tags.push(...window.myCustomTags);
 
-  var toCustomElements = function (str) {
+  var toCustomElements = str => {
     var result = [];
-    var dashed = str.replace(/([A-Z])/g, function ($1) {
-      return " " + $1.toLowerCase();
-    });
+    var dashed = str.replace(/([A-Z])/g, $1 => " " + $1.toLowerCase());
     var tokens = dashed.split(' ');
 
     // If a token is just a single name (i.e. no namespace) then we juse define the elements the name given
@@ -58,5 +56,4 @@
       document.createElement(customElement);
     }
   }
-
-})(window);
+}))(window);

@@ -4,13 +4,13 @@
  * @param [offset] {int} optional Y-offset to override the detected offset.
  *   Takes 300 (absolute) or -300 or +300 (relative to detected)
  */
-angular.module('ui.scrollfix',[]).directive('uiScrollfix', ['$window', function ($window) {
+angular.module('ui.scrollfix',[]).directive('uiScrollfix', ['$window', $window => {
   'use strict';
   return {
     require: '^?uiScrollfixTarget',
-    link: function (scope, elm, attrs, uiScrollfixTarget) {
-      var top = elm[0].offsetTop,
-          $target = uiScrollfixTarget && uiScrollfixTarget.$element || angular.element($window);
+    link(scope, elm, attrs, uiScrollfixTarget) {
+      var top = elm[0].offsetTop;
+      var $target = uiScrollfixTarget && uiScrollfixTarget.$element || angular.element($window);
       if (!attrs.uiScrollfix) {
         attrs.uiScrollfix = top;
       } else {
@@ -22,7 +22,7 @@ angular.module('ui.scrollfix',[]).directive('uiScrollfix', ['$window', function 
         }
       }
 
-      $target.bind('scroll', function () {
+      $target.bind('scroll', () => {
         // if pageYOffset is defined use it, otherwise use other crap for IE
         var offset;
         if (angular.isDefined($window.pageYOffset)) {
@@ -39,10 +39,10 @@ angular.module('ui.scrollfix',[]).directive('uiScrollfix', ['$window', function 
       });
     }
   };
-}]).directive('uiScrollfixTarget', [function () {
+}]).directive('uiScrollfixTarget', [() => {
   'use strict';
   return {
-    controller: function($element) {
+    controller($element) {
       this.$element = $element;
     }
   };

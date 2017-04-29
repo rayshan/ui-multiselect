@@ -1,13 +1,14 @@
-describe('uiIndeterminate', function () {
-  var $scope, $compile;
+describe('uiIndeterminate', () => {
+  var $scope;
+  var $compile;
 
   beforeEach(module('ui.indeterminate'));
-  beforeEach(inject(function (_$rootScope_, _$compile_) {
+  beforeEach(inject((_$rootScope_, _$compile_) => {
     $compile = _$compile_;
     $scope = _$rootScope_.$new();
   }));
 
-  it('should watch ui-indeterminate and toggle the indeterminate property', function(){
+  it('should watch ui-indeterminate and toggle the indeterminate property', () => {
     elm = $compile('<input type="checkbox" ui-indeterminate="isUnknown" />')($scope);
     expect(elm[0].indeterminate).toBeFalsy();
     $scope.isUnknown = true;
@@ -18,7 +19,7 @@ describe('uiIndeterminate', function () {
     expect(elm[0].indeterminate).toBe(false);
   });
 
-  it('should do nothing if not attached to input[type=checkbox]', function(){
+  it('should do nothing if not attached to input[type=checkbox]', () => {
     elm = $compile('<input ui-indeterminate="isUnknown" />')($scope);
     expect(elm[0].indeterminate).toBeFalsy();
     $scope.isUnknown = true;

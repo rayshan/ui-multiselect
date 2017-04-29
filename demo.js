@@ -1,7 +1,7 @@
 //noinspection JSCheckFunctionSignatures
 var app = angular.module('app', ['ui.event', 'ui.multiselect', 'underline']);
 
-app.controller('MainCtrl', ['$scope', function ($scope) {
+app.controller('MainCtrl', ['$scope', $scope => {
 	$scope.data = [
 		"United States",
 		"Afghanistan",

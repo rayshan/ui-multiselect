@@ -1,22 +1,21 @@
-describe('uiMask', function () {
-
+describe('uiMask', () => {
   var formHtml  = "<form name='test'><input name='input' ng-model='x' ui-mask='{{mask}}'></form>";
   var inputHtml = "<input name='input' ng-model='x' ui-mask='{{mask}}'>";
-  var compileElement, scope, config;
+  var compileElement;
+  var scope;
+  var config;
 
   beforeEach(module('ui.mask'));
-  beforeEach(inject(function ($rootScope, $compile, uiMaskConfig) {
+  beforeEach(inject(($rootScope, $compile, uiMaskConfig) => {
     c = console.log;
     scope = $rootScope; 
     config = uiMaskConfig;
-    compileElement = function(html) {
-      return $compile(html)(scope);
-    };
+    compileElement = html => $compile(html)(scope);
   }));
 
-  describe('initialization', function () {
+  describe('initialization', () => {
 
-    it("should not not happen if the mask is undefined or invalid", function() {
+    it("should not not happen if the mask is undefined or invalid", () => {
       var input = compileElement(inputHtml);
       scope.$apply("x = 'abc123'");
       expect(input.val()).toBe('abc123');
@@ -24,7 +23,7 @@ describe('uiMask', function () {
       expect(input.val()).toBe('abc123');
     });
 
-    it("should mask the value only if it's valid", function() {
+    it("should mask the value only if it's valid", () => {
       var input = compileElement(inputHtml);
       scope.$apply("x = 'abc123'");
       scope.$apply("mask = '(A) * 9'");
@@ -33,7 +32,7 @@ describe('uiMask', function () {
       expect(input.val()).toBe('');
     });
 
-    it("should not dirty or invalidate the input", function() {
+    it("should not dirty or invalidate the input", () => {
       var input = compileElement(inputHtml);
       scope.$apply("x = 'abc123'");
       scope.$apply("mask = '(9) * A'");
@@ -42,7 +41,7 @@ describe('uiMask', function () {
       expect(input.hasClass('ng-pristine ng-valid')).toBeTruthy();
     });
 
-    it("should not change the model value", function() {
+    it("should not change the model value", () => {
       var input = compileElement(inputHtml);
       scope.$apply("x = 'abc123'");
       scope.$apply("mask = '(A) * 9'");
@@ -51,7 +50,7 @@ describe('uiMask', function () {
       expect(scope.x).toBe('abc123');
     });
 
-    it("should set ngModelController.$viewValue to match input value", function() {
+    it("should set ngModelController.$viewValue to match input value", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = 'abc123'");
@@ -63,8 +62,8 @@ describe('uiMask', function () {
 
   });
 
-  describe('user input', function () {
-    it("should mask-as-you-type", function() {
+  describe('user input', () => {
+    it("should mask-as-you-type", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -77,7 +76,7 @@ describe('uiMask', function () {
       expect(input.val()).toBe('(a) b 1');
     });
 
-    it("should set ngModelController.$viewValue to match input value", function() {
+    it("should set ngModelController.$viewValue to match input value", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -87,7 +86,7 @@ describe('uiMask', function () {
       expect(scope.test.input.$viewValue).toBe('(a) _ _');
     });
 
-    it("should parse unmasked value to model", function() {
+    it("should parse unmasked value to model", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -97,7 +96,7 @@ describe('uiMask', function () {
       expect(scope.x).toBe('ab1');
     });
 
-    it("should set model to undefined if masked value is invalid", function() {
+    it("should set model to undefined if masked value is invalid", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -107,7 +106,7 @@ describe('uiMask', function () {
       expect(scope.x).toBeUndefined();
     });
     
-    it("should not set model to an empty mask", function() {
+    it("should not set model to an empty mask", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -117,8 +116,8 @@ describe('uiMask', function () {
     });
   });
 
-  describe('changes from the model', function () {
-    it("should set the correct ngModelController.$viewValue", function() {
+  describe('changes from the model', () => {
+    it("should set the correct ngModelController.$viewValue", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("mask = '(A) * 9'");
@@ -130,9 +129,9 @@ describe('uiMask', function () {
       expect(scope.test.input.$viewValue).toBe('(a) b 1');
     });
   });
-  
-  describe('default mask definitions', function () {
-    it("should accept optional mask after '?'", function (){
+
+  describe('default mask definitions', () => {
+    it("should accept optional mask after '?'", () => {
       var input = compileElement(inputHtml);
 
       scope.$apply("x = ''");
@@ -151,9 +150,9 @@ describe('uiMask', function () {
       expect(input.val()).toBe('992');
     });
   });
-  
-  describe('configuration', function () {
-    it("should accept the new mask definition set globally", function() {
+
+  describe('configuration', () => {
+    it("should accept the new mask definition set globally", () => {
       config.maskDefinitions['@'] = /[fz]/;
       
       var input = compileElement(inputHtml);
@@ -165,7 +164,7 @@ describe('uiMask', function () {
       expect(input.val()).toBe('f123');
     });
     
-    it("should accept the new mask definition set per element", function() {
+    it("should accept the new mask definition set per element", () => {
       delete config.maskDefinitions['@'];
 
       scope.input = {
@@ -181,8 +180,8 @@ describe('uiMask', function () {
     });
   });
 
-  describe('blurring', function () {
-    it("should clear an invalid value from the input", function() {
+  describe('blurring', () => {
+    it("should clear an invalid value from the input", () => {
       var input = compileElement(inputHtml);
       scope.$apply("x = ''");
       scope.$apply("mask = '(9) * A'");
@@ -191,7 +190,7 @@ describe('uiMask', function () {
       expect(input.val()).toBe('');
     });
 
-    it("should clear an invalid value from the ngModelController.$viewValue", function() {
+    it("should clear an invalid value from the ngModelController.$viewValue", () => {
       var form  = compileElement(formHtml);
       var input = form.find('input');
       scope.$apply("x = ''");
@@ -201,5 +200,4 @@ describe('uiMask', function () {
       expect(scope.test.input.$viewValue).toBe('');
     });
   });
-
 });

@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = grunt => {
 
   // Loading external tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -16,8 +16,8 @@ module.exports = function (grunt) {
   grunt.registerTask('server', ['karma:start']);
 
 
-  var testConfig = function(configFile, customOptions) {
-    var options = { configFile: configFile, singleRun: true };
+  var testConfig = (configFile, customOptions) => {
+    var options = { configFile, singleRun: true };
     var travisOptions = process.env.TRAVIS && { browsers: ['Firefox', 'PhantomJS'], reporters: ['dots'] };
     return grunt.util._.extend(options, customOptions, travisOptions);
   };
@@ -107,7 +107,7 @@ module.exports = function (grunt) {
         ]
       },
       template : {
-        options : {processContent : function(content){
+        options : {processContent(content) {
           return grunt.template.process(content);
         }},
         files: [

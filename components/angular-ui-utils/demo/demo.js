@@ -3,7 +3,7 @@ $("#utils").hide();
 
 requirejs(
   ['build/ui-utils.js'],
-  function () {
+  () => {
 
 
     //angular.module('doc.ui-map', ['ui.utils', 'prettifyDirective']);
