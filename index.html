@@ -7,6 +7,16 @@
 
 	<link rel="stylesheet" href="index.css">
 	<link rel="stylesheet" href="ui-multiselect.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47116686-1"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-47116686-1');
+	</script>
 </head>
 
 <body ng-controller="MainCtrl">
@@ -29,5 +39,6 @@
 <script src="components/angular-ui-utils/modules/event/event.js"></script>
 <script src="index.js"></script>
 <script src="ui-multiselect.js"></script>
+
 </body>
 </html>
