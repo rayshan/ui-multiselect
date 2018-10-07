@@ -3,7 +3,7 @@ ui-multiselect
 
 A token field, AKA an inline multiselect with typeahead, built as an AngularJS directive.
 
-[Demo](https://shan.io/ui-multiselect/demo.html)
+[Demo](https://shan.io/ui-multiselect/)
 
 For thinking behind this component library, and a general tear down of token fields, see this [blog post](https://shan.io/writing/how-token-fields-or-inline-multiselect-components-work-in-web-apps/).
 
