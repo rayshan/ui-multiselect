@@ -4,7 +4,7 @@
 	max-width: 980px;
 }
 
-div.centerd {
+div.centered {
 	margin: 0 auto;
 	padding-top: 25px;
 	width: 400px;
@@ -26,4 +26,10 @@ textarea {
 	font-family: inherit; /* 1 */
 	font-size: 100%; /* 2 */
 	margin: 0; /* 3 */
+}
+
+.byline {
+	margin-top: 10rem;
+	text-align: center;
+	color: darkgray;
 }
